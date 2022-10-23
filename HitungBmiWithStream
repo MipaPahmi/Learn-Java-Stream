@@ -1,0 +1,47 @@
+import java.io.*;
+public class LearnStream{
+    public static void main (String []args) {
+        String data, idPegawai, namaPegawai ;
+        int gol ;
+        float gajiPokok, tunjangan, totalGaji;
+        
+        
+        try {
+            FileReader fr = new FileReader("C:/Mipa/Learn/Output3.txt");
+            BufferedReader br = new BufferedReader(fr);
+            
+            System.out.println("ID Pegawai \t Nama Pegawai \t Gol \t Gaji Pokok \t Tunjangan \t Total Gaji");
+            System.out.println("--------------------------------------------------------------------------------------");
+            while ( (data=br.readLine()) != null ) {
+                idPegawai = data.substring(0,8);
+                gol = Integer.parseInt(data.substring(9,10));
+                namaPegawai = data.substring(11);
+                
+                if (gol == 1) {
+                    gajiPokok = 3_000_000;
+                    tunjangan = gajiPokok * 5 / 100;
+                } 
+                else if (gol == 2) {
+                    gajiPokok = 4_500_000;
+                    tunjangan = gajiPokok * 10 / 100;
+                }
+                else if (gol == 3) {
+                    gajiPokok = 6_000_000;
+                    tunjangan = gajiPokok * 15 / 100;
+                }
+                else {
+                    gajiPokok = 8_000_000;
+                    tunjangan = gajiPokok * 20 / 100;
+                }
+                totalGaji = gajiPokok + tunjangan;
+                System.out.println(idPegawai + "\t" + namaPegawai + "\t" + gol + "\t" + gajiPokok + "\t" + tunjangan + "\t" + totalGaji);
+                
+            }
+            
+            System.out.println("-----------------------------------------------------------------------------------------");
+            
+        } catch(IOException e) {
+            System.err.println("Kesalahan pada penulisan text ke file");
+        }
+    }
+}
